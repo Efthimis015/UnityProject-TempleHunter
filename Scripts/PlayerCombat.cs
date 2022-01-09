@@ -24,7 +24,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private AudioSource DeathSwordSound;
 
 
-
+// Attack Key Code (Spacebar pressed)
 
     void Update()
     {
@@ -40,6 +40,10 @@ public class PlayerCombat : MonoBehaviour
             }
 
         }
+        
+
+
+// Ability Code (Key = Q pressed)
 
         if (Time.time >= nextAbilityTime)
         {
@@ -54,6 +58,10 @@ public class PlayerCombat : MonoBehaviour
 
         }
     }
+
+
+
+// Attack Code (Animation + Damage + Sound)
 
     void Attack()
     {
@@ -81,6 +89,9 @@ public class PlayerCombat : MonoBehaviour
     }
 
 
+
+// Damage Code (HP losing + Animation "Hurt")
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -97,9 +108,12 @@ public class PlayerCombat : MonoBehaviour
 
 
         }
-    }
+     }
 
-    // pethainei kai paei sto respawn scene
+
+
+// Death Code (Animation + Slow Motion on Kill + Sound on Kill)
+
     void Death()
     {
         animator.SetBool("PDie", true);
@@ -125,12 +139,10 @@ public class PlayerCombat : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(4);
 
-
-
-
     }
 
-    //
+
+// Potion Code (Health Add)
 
     public void AddHealth(int _value)
     {
@@ -139,8 +151,11 @@ public class PlayerCombat : MonoBehaviour
         healthBar.SetHealth(currentHealth);
 
 
+    
     }
 
+
+// Max Health Code (HP bar + Slider + color) 
 
     public void SetMaxHealth(int health)
     {
@@ -158,6 +173,9 @@ public class PlayerCombat : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 
+    
+    
+    
     public IEnumerator Sword()
     {
         yield return new WaitForSeconds(0.4f);
@@ -167,7 +185,10 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-    // hxos apo spathi KO enemy ston xarakthra mas otan pethainei
+
+
+// Enemy Kill Sound (When Slow Motion Happens)
+
     public IEnumerator DeathSword()
     {
         yield return new WaitForSeconds(0.4f);
@@ -176,6 +197,9 @@ public class PlayerCombat : MonoBehaviour
 
 
     }
+
+
+// Ability Code (Key = Q pressed)
 
     public IEnumerator Ability()
     {
